@@ -40,7 +40,6 @@ $(document).ready(function() {
         $('#active-quote p').text(quote);
         $('#active-quote footer a').text(author);
         $('#active-quote footer a').attr('href', searchURL);
-        affordTweetBtn(tweet, $('#active-quote .btn-twitter'));
         console.log(response);
         return response;
       },
@@ -61,17 +60,7 @@ $(document).ready(function() {
   $('.btn-new-quote').trigger('click');
 
 
-  var checkIfTweetable = function (tweet) {
-    return tweet.length <= 140;
-  };
 
-  var affordTweetBtn = function (tweet, btn) {
-    if (checkIfTweetable(tweet)) {
-      btn.removeClass('disabled');
-    } else {
-      btn.addClass('disabled');
-    }
-  };
 
   var generateTweet = function (quote, author) {
     return '"' + quote + '"\n' + '- ' + author;
