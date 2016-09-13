@@ -139,4 +139,9 @@ $(document).ready(function() {
     }
   };
 
+  var getQuoteIdFromObj = function (q) {
+    var url = q.quoteLink;
+    return url.slice(quoteURLPath.length, url.length-1);
+  };
+
 });
