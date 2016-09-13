@@ -2,11 +2,16 @@
 
 $(document).ready(function() {
 
+  var quotes = {};
+  var activeQuoteId = '';
+  var favQuoteIds = [];
+
   var cx = '';
   var googleAPIKey = '';
   var googleBaseSearchURL = 'https://www.google.com/#q=';
 
-  var quoteURL = 'http://api.forismatic.com/api/1.0/';
+  var quoteURLPath = 'http://forismatic.com/en/';
+  var quoteAPIURL = 'http://api.forismatic.com/api/1.0/';
   var searchInfo = {
     method: 'getQuote',
     lang: 'en',
@@ -16,7 +21,7 @@ $(document).ready(function() {
 
   var getNewQuote = function () {
     $.ajax({
-      url: quoteURL,
+      url: quoteAPIURL,
       data: searchInfo,
       method: 'GET',
       cache: false,
