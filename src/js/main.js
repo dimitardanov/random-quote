@@ -139,8 +139,8 @@ $(document).ready(function() {
     }
   };
 
-  var getQuoteIdFromObj = function (q) {
-    var url = q.quoteLink;
+  var getQuoteIdFromObj = function (quoteObj) {
+    var url = quoteObj.quoteLink;
     return url.slice(quoteURLPath.length, url.length-1);
   };
 
