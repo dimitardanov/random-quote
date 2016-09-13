@@ -35,7 +35,7 @@ $(document).ready(function() {
         $('#active-quote p').text(quote);
         $('#active-quote footer a').text(author);
         $('#active-quote footer a').attr('href', searchURL);
-        affordTweetBtn(tweet, $('#active-quote .btn-tweet'));
+        affordTweetBtn(tweet, $('#active-quote .btn-twitter'));
         console.log(response);
         return response;
       },
