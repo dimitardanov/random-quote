@@ -148,4 +148,8 @@ $(document).ready(function() {
     return quotes[qId].quoteText;
   };
 
+  var getQuoteAuthor = function (qId) {
+    return quotes[qId].quoteAuthor;
+  };
+
 });
