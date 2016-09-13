@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Quotes of Wisdom</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Twitter disable DOM scan for widgets and buttons -->
+  <!-- <meta name="twitter:widgets:autoload" content="off"> -->
+  <meta name="twitter:widgets:theme" content="light">
+
+
+
+  <link href="css/styles.css" rel="stylesheet">
+  <!--
+  <script src="../../node_modules/handlebars/dist/handlebars.runtime.js"></script>
+  <script src="templates/templates.js"></script>
+-->
+</head>
+<body>
+
+  <!-- <div id="templateDemo"></div> -->
+
+  <div class="container alert alert-danger" role="alert" id="jswarning">
+    <p class="text-center">
+      You need JavaScript enabled to interact with the site properly.
+    </p>
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Quotes of Wisdom</a>
+      </div>
+      <!-- <p class="navbar-text text-center quotesymbols">d</p> -->
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Favorite Quotes <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+
+
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+
+        <section>
+          <h2>Thus specan thē wīse</h2>
+
+          <article class="media" id="active-quote">
+            <div class="media-left">
+              <a href="#">
+                <img class="media-object img-rounded" src="http://www.placehold.it/120x120/cccccc?text=%3F" alt="author" id="avatar">
+              </a>
+            </div><!-- .media-left -->
+            <div class="media-body">
+              <blockquote>
+                <p></p>
+                <footer>
+                  <a href="#" target="_blank"></a>
+                </footer>
+              </blockquote>
+              <button type="button" class="btn btn-fav"><span class="glyphicon glyphicon-heart-empty"></span> Fav!</button>
+              <div class="btn-twitter">
+                <a class="twitter-share-button"
+                  href="https://twitter.com/share"
+                  data-size="large"
+                  data-url="https://dev.twitter.com/web/tweet-button"
+                  data-via="twitterdev"
+                  data-related="twitterapi,twitter"
+                  data-hashtags="example,demo"
+                  data-text="custom share text">
+                  Tweet
+                </a>
+              </div>
+            </div><!-- .media-body -->
+          </article><!-- #active-quote .media -->
+
+          <div class="pull-right">
+            <button class="btn btn-default btn-new-quote">New Quote</button>
+          </div>
+
+        </section>
+      </div><!-- .col-md-10 .col-md-offset-1 -->
+    </div><!-- row -->
+
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h2>Lacus Profundum</h2>
+        <!-- <small>de magnitudine stagnum</small> -->
+        <section>
+
+
+
+        </section>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <script>window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script> -->
+  <script src="js/bootstrap.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

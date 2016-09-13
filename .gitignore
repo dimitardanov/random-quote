@@ -1,0 +1,6 @@
+node_modules
+builds
+.sass-cache
+*~
+*.swp
+.DS_Store
