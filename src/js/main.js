@@ -152,4 +152,9 @@ $(document).ready(function() {
     return quotes[qId].quoteAuthor;
   };
 
+  var addQuote = function (quoteObj) {
+    var qId = getQuoteIdFromObj(quoteObj);
+    quotes[qid] = quoteObj;
+  };
+
 });
