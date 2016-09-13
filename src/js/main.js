@@ -144,4 +144,8 @@ $(document).ready(function() {
     return url.slice(quoteURLPath.length, url.length-1);
   };
 
+  var getQuoteText = function (qId) {
+    return quotes[qId].quoteText;
+  };
+
 });
