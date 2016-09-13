@@ -157,4 +157,40 @@ $(document).ready(function() {
     quotes[qid] = quoteObj;
   };
 
+  var setActiveQuoteId = function (quoteObj) {
+    activeQuoteId = getQuoteIdFromObj(quoteObj);
+  };
+
+  var preprocessResponse = function (response) {
+    response = preprocessQuoteTextStr(response);
+    response = preprocessQuoteAuthorStr(response);
+    response = createGoogleAuthorURLStr(response);
+    return response;
+  };
+
+  var preprocessQuoteTextStr = function (quoteObj) {
+    quoteObj.quoteText = quoteObj.quoteText.trim();
+    return quoteObj;
+  };
+
+  var preprocessQuoteAuthorStr = function (quoteObj) {
+    quoteObj.quoteAuthor = quoteObj.quoteAuthor.trim();
+    if (quoteObj.quoteAuthor) {
+      quoteObj.quoteAuthorKnown = true;
+    } else {
+      quoteObj.quoteAuthor = 'Unknown';
+      quoteObj.quoteAuthorKnown = false;
+    }
+    return quoteObj;
+  };
+
+  var createGoogleAuthorURLStr = function (quoteObj) {
+    if (quoteObj.quoteAuthorKnown) {
+      quoteObj.googleAuthorLink = createQueryString(quoteObj.quoteAuthor);
+    } else {
+      quoteObj.googleAuthorLink = createQueryString(quoteObj.quoteText);
+    }
+    return quoteObj;
+  };
+
 });
