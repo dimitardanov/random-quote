@@ -143,7 +143,7 @@ $(document).ready(function() {
 
   var addQuote = function (quoteObj) {
     var qId = getQuoteIdFromObj(quoteObj);
-    quotes[qid] = quoteObj;
+    quotes[qId] = quoteObj;
   };
 
   var setActiveQuoteId = function (quoteObj) {
