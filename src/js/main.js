@@ -174,11 +174,13 @@ $(document).ready(function() {
   };
 
   var createSearchAuthorURL = function (quoteObj) {
+    var searchStr = '';
     if (quoteObj.quoteAuthorKnown) {
-      quoteObj.googleAuthorLink = createQueryString(quoteObj.quoteAuthor);
+      searchStr = quoteObj.quoteAuthor;
     } else {
-      quoteObj.googleAuthorLink = createQueryString(quoteObj.quoteText);
+      searchStr = quoteObj.quoteText;
     }
+    quoteObj.googleAuthorLink = createGoogleSearchURL(searchStr);
     return quoteObj;
   };
 
