@@ -141,6 +141,10 @@ $(document).ready(function() {
     return quotes[qId].quoteAuthor;
   };
 
+  var getSearchAuthorURL = function (qId) {
+    return quotes[qId].googleAuthorLink;
+  };
+
   var addQuote = function (quoteObj) {
     var qId = getQuoteIdFromObj(quoteObj);
     quotes[qId] = quoteObj;
