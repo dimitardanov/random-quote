@@ -5,6 +5,7 @@ $(document).ready(function() {
   var quotes = {};
   var activeQuoteId = '';
   var favQuoteIds = [];
+  var defaultAvatarImgSrc = 'http://www.placehold.it/120x120/cccccc?text=%3F';
 
   var cx = '';
   var googleAPIKey = '';
@@ -150,6 +151,16 @@ $(document).ready(function() {
     return quotes[qId].favBtnId;
   };
 
+  var getAvatarImgSrc = function (qId) {
+    return quotes[qId].avatarImgSrc;
+  };
+
+  var setAvatarImgSrc = function (qId, src) {
+    quotes[qId].avatarImgSrc = src;
+    quotes[qId].isDefaultAvatarImgSrc = false;
+    return;
+  };
+
   var addQuote = function (quoteObj) {
     var qId = getQuoteIdFromObj(quoteObj);
     quotes[qId] = quoteObj;
@@ -165,6 +176,7 @@ $(document).ready(function() {
     response = createSearchAuthorURL(response);
     response = createTweetText(response);
     response = createFavBtnData(response);
+    response = createDefaultAvatarImageSrc(response);
     return response;
   };
 
@@ -202,6 +214,12 @@ $(document).ready(function() {
 
   var createFavBtnData = function (quoteObj) {
     quoteObj.favBtnId = getQuoteIdFromObj(quoteObj);
+    return quoteObj;
+  };
+
+  var createDefaultAvatarImageSrc = function (quoteObj) {
+    quoteObj.avatarImgSrc = defaultAvatarImgSrc;
+    quoteObj.isDefaultAvatarImgSrc = true;
     return quoteObj;
   };
 
