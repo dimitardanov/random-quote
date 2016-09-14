@@ -153,7 +153,7 @@ $(document).ready(function() {
   var preprocessResponse = function (response) {
     response = preprocessQuoteTextStr(response);
     response = preprocessQuoteAuthorStr(response);
-    response = createGoogleAuthorURLStr(response);
+    response = createSearchAuthorURL(response);
     return response;
   };
 
@@ -173,7 +173,7 @@ $(document).ready(function() {
     return quoteObj;
   };
 
-  var createGoogleAuthorURLStr = function (quoteObj) {
+  var createSearchAuthorURL = function (quoteObj) {
     if (quoteObj.quoteAuthorKnown) {
       quoteObj.googleAuthorLink = createQueryString(quoteObj.quoteAuthor);
     } else {
