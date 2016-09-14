@@ -146,6 +146,10 @@ $(document).ready(function() {
     return quotes[qId].tweetText;
   };
 
+  var getFavBtnData = function (qId) {
+    return quotes[qId].favBtnId;
+  };
+
   var addQuote = function (quoteObj) {
     var qId = getQuoteIdFromObj(quoteObj);
     quotes[qId] = quoteObj;
@@ -160,6 +164,7 @@ $(document).ready(function() {
     response = preprocessQuoteAuthorStr(response);
     response = createSearchAuthorURL(response);
     response = createTweetText(response);
+    response = createFavBtnData(response);
     return response;
   };
 
@@ -192,6 +197,11 @@ $(document).ready(function() {
 
   var createTweetText = function (quoteObj) {
     quoteObj.tweetText = '"' + quoteObj.quoteText + '"\n' + '- ' + quoteObj.quoteAuthor;
+    return quoteObj;
+  };
+
+  var createFavBtnData = function (quoteObj) {
+    quoteObj.favBtnId = getQuoteIdFromObj(quoteObj);
     return quoteObj;
   };
 
