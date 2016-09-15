@@ -319,4 +319,8 @@ $(document).ready(function() {
     return $divContainer;
   };
 
+  var createActiveQuote = function (qId) {
+    return $('#active-quote').html(createQuoteHTML(qId));
+  };
+
 });
