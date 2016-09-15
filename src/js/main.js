@@ -300,4 +300,23 @@ $(document).ready(function() {
     return $tweetBtnCont;
   };
 
+  var createQuoteHTML = function (qId) {
+    var $divContainer = $('<div>', {
+      class: 'media-holder'
+    });
+
+    var $avatarDiv = createQuoteAvatarHTML(qId);
+    $divContainer.append($avatarDiv);
+
+    var $articleBody = createQuoteBodyHTML(qId);
+    var $favBtn = createFavBtnHTML(qId);
+    var $tweetBtn = createTweetBtnHTML(qId);
+
+    $articleBody.append($favBtn);
+    $articleBody.append($tweetBtn);
+    $divContainer.append($articleBody);
+
+    return $divContainer;
+  };
+
 });
