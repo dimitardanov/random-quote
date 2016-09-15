@@ -258,4 +258,23 @@ $(document).ready(function() {
     return $avatarDiv;
   };
 
+  var createQuoteBodyHTML = function (qId) {
+    var $articleBody = $('<div>', {
+      class: 'media-body'
+    });
+    var $blockquote = $('<blockquote>');
+    var $quoteText = $('<p>').text(getQuoteText(qId));
+    var $quoteFooter = $('<footer>');
+    var $authorLink = $('<a>', {
+      href: getSearchAuthorURL(qId),
+      target: '_blank'
+    }).text(getQuoteAuthor(qId));
+
+    $quoteFooter.append($authorLink);
+    $blockquote.append($quoteText);
+    $blockquote.append($quoteFooter);
+    $articleBody.append($blockquote);
+    return $articleBody;
+  };
+
 });
