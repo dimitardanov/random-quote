@@ -277,4 +277,12 @@ $(document).ready(function() {
     return $articleBody;
   };
 
+  var createFavBtnHTML = function (qId) {
+    return $('<button>', {
+      type: 'button',
+      class: 'btn btn-fav',
+      'data-fav-id': getFavBtnData(qId)
+    }).html('<span class="glyphicon glyphicon-heart-empty"></span> Fav!');
+  };
+
 });
