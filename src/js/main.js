@@ -285,4 +285,19 @@ $(document).ready(function() {
     }).html('<span class="glyphicon glyphicon-heart-empty"></span> Fav!');
   };
 
+  var createTweetBtnHTML = function (qId) {
+    var $tweetBtn = $('<a>', {
+      class: 'twitter-share-button',
+      href: 'https://twitter.com/share',
+      'data-size': 'large',
+      'data-text': getTweetText(qId)
+    }).text('Tweet');
+
+    var $tweetBtnCont = $('<div>', {
+      class: 'btn-twitter'
+    }).append($tweetBtn);
+    twttr.widgets.load($tweetBtn);
+    return $tweetBtnCont;
+  };
+
 });
