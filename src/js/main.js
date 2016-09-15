@@ -33,14 +33,8 @@ $(document).ready(function() {
       jsonp: false,
       jsonpCallback: 'callback',
 
-      success: function( response ) {
-        quoteObj = preprocessResponse(response);
-        setActiveQuoteId(quoteObj);
-        addQuote(quoteObj);
-        // changeAvatarImage(createQueryString(author));
-        createActiveQuote(activeQuoteId);
-        console.log(quotes[activeQuoteId]);
-        return response;
+      success: function (response) {
+        quoteSuccessFunc(response);
       },
 
       error: function( response, status, error ) {
@@ -50,6 +44,16 @@ $(document).ready(function() {
       }
 
     });
+  };
+
+  var quoteSuccessFunc = function( response ) {
+    quoteObj = preprocessResponse(response);
+    setActiveQuoteId(quoteObj);
+    addQuote(quoteObj);
+    // changeAvatarImage(createQueryString(author));
+    createActiveQuote(activeQuoteId);
+    console.log(quotes[activeQuoteId]);
+    return response;
   };
 
 
