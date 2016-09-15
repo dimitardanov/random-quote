@@ -34,15 +34,12 @@ $(document).ready(function() {
       jsonpCallback: 'callback',
 
       success: function( response ) {
-        var quote = response.quoteText.trim();
-        var author = response.quoteAuthor.trim();
-        var searchURL = createGoogleSearchURL(author);
-        var tweet = generateTweet(quote, author);
+        quoteObj = preprocessResponse(response);
+        setActiveQuoteId(quoteObj);
+        addQuote(quoteObj);
         // changeAvatarImage(createQueryString(author));
-        $('#active-quote p').text(quote);
-        $('#active-quote footer a').text(author);
-        $('#active-quote footer a').attr('href', searchURL);
-        console.log(response);
+        createActiveQuote(activeQuoteId);
+        console.log(quotes[activeQuoteId]);
         return response;
       },
 
