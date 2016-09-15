@@ -33,6 +33,10 @@ $(document).ready(function() {
       jsonp: false,
       jsonpCallback: 'callback',
 
+      beforeSend: function (jqXHR, settings) {
+        $('.btn-new-quote').prop('disabled', true);
+      },
+
       success: function (response) {
         quoteSuccessFunc(response);
       },
@@ -41,6 +45,10 @@ $(document).ready(function() {
         console.log(response);
         console.log(status);
         console.log(error);
+      },
+
+      complete: function (jqXHR, status) {
+        $('.btn-new-quote').prop('disabled', false);
       }
 
     });
@@ -60,7 +68,8 @@ $(document).ready(function() {
   $('#jswarning').hide();
 
   $('.btn-new-quote').on('click', getNewQuote);
-  $('.btn-new-quote').trigger('click');
+  $('.btn-new-quote').prop('disabled', false)
+                     .trigger('click');
 
 
 
