@@ -241,4 +241,21 @@ $(document).ready(function() {
     return quoteObj;
   };
 
+  var createQuoteAvatarHTML = function (qId) {
+    var $avatarDiv = $('<div>', {
+      class: 'media-left'
+    });
+    var $imgLink = $('<a>', {
+      href: '#'
+    });
+    var $avatarImg = $('<img>', {
+      src: getAvatarImgSrc(qId),
+      alt: 'author',
+      class: 'media-object img-rounded'
+    });
+    $imgLink.append($avatarImg);
+    $avatarDiv.append($imgLink);
+    return $avatarDiv;
+  };
+
 });
