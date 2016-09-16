@@ -252,10 +252,10 @@ $(document).ready(function() {
   };
 
   var createQuoteAvatarHTML = function (qId) {
-    var $avatarDiv = $('<div>', {
+    var $avatarDiv = $('<div></div>', {
       class: 'media-left'
     });
-    var $imgLink = $('<a>', {
+    var $imgLink = $('<a></a>', {
       href: '#'
     });
     var $avatarImg = $('<img>', {
@@ -269,13 +269,13 @@ $(document).ready(function() {
   };
 
   var createQuoteBodyHTML = function (qId) {
-    var $articleBody = $('<div>', {
+    var $articleBody = $('<div></div>', {
       class: 'media-body'
     });
-    var $blockquote = $('<blockquote>');
-    var $quoteText = $('<p>').text(getQuoteText(qId));
-    var $quoteFooter = $('<footer>');
-    var $authorLink = $('<a>', {
+    var $blockquote = $('<blockquote></blockquote>');
+    var $quoteText = $('<p></p>').text(getQuoteText(qId));
+    var $quoteFooter = $('<footer></footer>');
+    var $authorLink = $('<a></a>', {
       href: getSearchAuthorURL(qId),
       target: '_blank'
     }).text(getQuoteAuthor(qId));
@@ -288,7 +288,7 @@ $(document).ready(function() {
   };
 
   var createFavBtnHTML = function (qId) {
-    return $('<button>', {
+    return $('<button></button>', {
       type: 'button',
       class: 'btn btn-fav',
       'data-fav-id': getFavBtnData(qId)
@@ -296,14 +296,14 @@ $(document).ready(function() {
   };
 
   var createTweetBtnHTML = function (qId) {
-    var $tweetBtn = $('<a>', {
+    var $tweetBtn = $('<a></a>', {
       class: 'twitter-share-button',
       href: 'https://twitter.com/share',
       'data-size': 'large',
       'data-text': getTweetText(qId)
     }).text('Tweet');
 
-    var $tweetBtnCont = $('<div>', {
+    var $tweetBtnCont = $('<div></div>', {
       class: 'btn-twitter'
     }).append($tweetBtn);
     twttr.widgets.load($tweetBtn);
@@ -311,7 +311,7 @@ $(document).ready(function() {
   };
 
   var createQuoteHTML = function (qId) {
-    var $divContainer = $('<div>', {
+    var $divContainer = $('<div></div>', {
       class: 'media-holder'
     });
 
