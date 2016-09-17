@@ -300,6 +300,7 @@ $(document).ready(function() {
       'class': 'twitter-share-button',
       href: 'https://twitter.com/share',
       'data-size': 'large',
+      'data-url': '/',
       'data-text': getTweetText(qId)
     }).text('Tweet');
 
