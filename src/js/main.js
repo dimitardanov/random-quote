@@ -346,7 +346,10 @@ $(document).ready(function() {
   };
 
   var createActiveQuote = function (qId) {
-    return $('#active-quote').html(createQuoteHTML(qId));
+    var $quoteHTML = createQuoteHTML(qId).hide();
+    var $activeQuote = $('#active-quote').html($quoteHTML);
+    $quoteHTML.fadeIn();
+    return $activeQuote;
   };
 
 });
