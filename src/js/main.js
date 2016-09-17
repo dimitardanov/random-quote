@@ -71,12 +71,13 @@ $(document).ready(function() {
 
   var moveActiveQuoteToList = function () {
     $activeQuoteHTML = $('#active-quote div');
-    $activeQuoteHTML.hide()
-                    .remove();
-    var $media = $('<article></article>', {'class': 'media'});
-    $media.append($activeQuoteHTML);
+    $activeQuoteHTML.fadeOut(400, function() {
+      $(this).remove();
+    });
+    var $media = $('<article></article>', {'class': 'media'}).hide();
+    $media.append(createQuoteHTML(activeQuoteId));
     $media.prependTo($quoteList);
-    $activeQuoteHTML.show();
+    $media.slideDown();
   };
 
 
