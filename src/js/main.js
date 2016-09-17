@@ -319,10 +319,10 @@ $(document).ready(function() {
     $divContainer.append($avatarDiv);
 
     var $articleBody = createQuoteBodyHTML(qId);
-    var $favBtn = createFavBtnHTML(qId);
+    // var $favBtn = createFavBtnHTML(qId);
     var $tweetBtn = createTweetBtnHTML(qId);
 
-    $articleBody.append($favBtn);
+    // $articleBody.append($favBtn);
     $articleBody.append($tweetBtn);
     $divContainer.append($articleBody);
 
