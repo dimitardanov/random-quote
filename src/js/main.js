@@ -25,6 +25,7 @@ $(document).ready(function() {
 
   var getNewQuote = function () {
     $('.btn-new-quote').prop('disabled', true);
+    createSpinner();
     if (activeQuoteId !== '') {
       moveActiveQuoteToList();
     }
@@ -41,6 +42,7 @@ $(document).ready(function() {
       jsonpCallback: 'callback',
 
       success: function (response) {
+        removeSpinner();
         quoteSuccessFunc(response);
       },
 
@@ -79,6 +81,23 @@ $(document).ready(function() {
     $media.prependTo($quoteList);
     $media.slideDown();
   };
+
+
+    var createSpinner = function () {
+      var $spinner = $('<p></p>', {'class': 'spinner'});
+      $spinner.append($('<span></span>', {'class': 'glyphicon glyphicon-refresh'}));
+      $spinner.hide();
+      $('#active-quote').append($spinner);
+      $spinner.fadeIn();
+    };
+
+    var removeSpinner = function () {
+      var $spinner = $('#active-quote p');
+      $spinner.stop()
+              .fadeOut(function () {
+                $(this).remove();
+              });
+    };
 
 
   $('#jswarning').hide();
