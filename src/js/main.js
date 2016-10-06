@@ -24,6 +24,11 @@ $(document).ready(function() {
   };
 
   var getNewQuote = function () {
+    $('.btn-new-quote').prop('disabled', true);
+    if (activeQuoteId !== '') {
+      moveActiveQuoteToList();
+    }
+
     $.ajax({
       url: quoteAPIURL,
       data: searchInfo,
@@ -34,13 +39,6 @@ $(document).ready(function() {
       dataType: 'jsonp',
       jsonp: false,
       jsonpCallback: 'callback',
-
-      beforeSend: function (jqXHR, settings) {
-        $('.btn-new-quote').prop('disabled', true);
-        if (activeQuoteId !== '') {
-          moveActiveQuoteToList();
-        }
-      },
 
       success: function (response) {
         quoteSuccessFunc(response);
