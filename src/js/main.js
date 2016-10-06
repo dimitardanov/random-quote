@@ -71,8 +71,10 @@ $(document).ready(function() {
 
   var moveActiveQuoteToList = function () {
     $activeQuoteHTML = $('#active-quote div');
+    $('#active-quote').addClass('blurry');
     $activeQuoteHTML.fadeOut(400, function() {
       $(this).remove();
+      $('#active-quote').removeClass('blurry');
     });
     var $media = $('<article></article>', {'class': 'media'}).hide();
     $media.append(createQuoteHTML(activeQuoteId));
@@ -348,7 +350,9 @@ $(document).ready(function() {
   var createActiveQuote = function (qId) {
     var $quoteHTML = createQuoteHTML(qId).hide();
     var $activeQuote = $('#active-quote').html($quoteHTML);
+    $('#active-quote').addClass('blurry');
     $quoteHTML.fadeIn();
+    $('#active-quote').removeClass('blurry');
     return $activeQuote;
   };
 

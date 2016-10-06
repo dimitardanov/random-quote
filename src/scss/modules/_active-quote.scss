@@ -1,4 +1,14 @@
 
 .active-quote {
   min-height: 146px;
+  
+  * {
+    // filter: blur(0);
+    transition: filter 200ms linear;
+  }
+}
+
+
+.blurry * {
+  filter: blur(5px);
 }
