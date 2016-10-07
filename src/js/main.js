@@ -7,6 +7,8 @@ $(document).ready(function() {
   var favQuoteIds = [];
   var defaultAvatarImgSrc = 'http://www.placehold.it/120x120/cccccc?text=%3F';
   var defaultAuthorImgSrc = 'http://www.placehold.it/400/cccccc?text=%3F';
+  var $activeQuoteHTML;
+  var $quoteList = $('#quote-list');
 
   var cx = '';
   var googleAPIKey = '';
@@ -22,6 +24,11 @@ $(document).ready(function() {
   };
 
   var getNewQuote = function () {
+    $('.btn-new-quote').prop('disabled', true);
+    if (activeQuoteId !== '') {
+      moveActiveQuoteToList();
+    }
+
     $.ajax({
       url: quoteAPIURL,
       data: searchInfo,
@@ -32,10 +39,6 @@ $(document).ready(function() {
       dataType: 'jsonp',
       jsonp: false,
       jsonpCallback: 'callback',
-
-      beforeSend: function (jqXHR, settings) {
-        $('.btn-new-quote').prop('disabled', true);
-      },
 
       success: function (response) {
         quoteSuccessFunc(response);
@@ -62,6 +65,19 @@ $(document).ready(function() {
     createActiveQuote(activeQuoteId);
     console.log(quotes[activeQuoteId]);
     return response;
+  };
+
+  var moveActiveQuoteToList = function () {
+    $activeQuoteHTML = $('#active-quote div');
+    $('#active-quote').addClass('blurry');
+    $activeQuoteHTML.fadeOut(400, function() {
+      $(this).remove();
+      $('#active-quote').removeClass('blurry');
+    });
+    var $media = $('<article></article>', {'class': 'media'}).hide();
+    $media.append(createQuoteHTML(activeQuoteId));
+    $media.prependTo($quoteList);
+    $media.slideDown();
   };
 
 
@@ -331,7 +347,12 @@ $(document).ready(function() {
   };
 
   var createActiveQuote = function (qId) {
-    return $('#active-quote').html(createQuoteHTML(qId));
+    var $quoteHTML = createQuoteHTML(qId).hide();
+    var $activeQuote = $('#active-quote').html($quoteHTML);
+    $('#active-quote').addClass('blurry');
+    $quoteHTML.fadeIn();
+    $('#active-quote').removeClass('blurry');
+    return $activeQuote;
   };
 
 });
