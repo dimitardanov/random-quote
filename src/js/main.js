@@ -12,6 +12,7 @@ $(document).ready(function() {
 
   var cx = '';
   var googleAPIKey = '';
+  var enableGoogleAPICalls = false;
   var googleBaseSearchURL = 'https://www.google.com/#q=';
 
   var quoteURLPath = 'http://forismatic.com/en/';
@@ -63,8 +64,11 @@ $(document).ready(function() {
     quoteObj = preprocessResponse(response);
     setActiveQuoteId(quoteObj);
     addQuote(quoteObj);
-    // changeAvatarImage(createQueryString(author));
     createActiveQuote(activeQuoteId);
+    if (enableGoogleAPICalls) {
+      var author = quoteObj.quoteAuthor;
+      changeAvatarImage(createQueryString(author));
+    }
     console.log(quotes[activeQuoteId]);
     return response;
   };
@@ -98,6 +102,30 @@ $(document).ready(function() {
                 $(this).remove();
               });
     };
+
+  var getObjFromQueryStr = function () {
+    var qObj = {};
+    var qStr = window.location.search.substring(1);
+    qStr = decodeURIComponent(qStr);
+    if (qStr !== '') {
+      var ql = qStr.split('&');
+      ql.map(function (s) {
+        var kv = s.split('=');
+        qObj[kv[0]] = kv[1];
+      });
+    }
+    return qObj;
+  };
+
+  var setImgSearchCredentials = function (qObj) {
+    if (qObj.hasOwnProperty('cx') && qObj.hasOwnProperty('k')) {
+      cx = qObj.cx;
+      googleAPIKey = qObj.k;
+      enableGoogleAPICalls = true;
+    }
+  };
+
+  setImgSearchCredentials(getObjFromQueryStr());
 
 
   $('#jswarning').hide();
@@ -143,7 +171,7 @@ $(document).ready(function() {
   };
 
   var changeAvatarImage = function (queryStr) {
-    var $img = $('#avatar');
+    var $img = $('#active-quote img');
     $img.show();
     if (queryStr) {
       $.ajax({
@@ -156,10 +184,11 @@ $(document).ready(function() {
         jsonp: false,
 
         success: function( response ) {
-          // console.log(response['items'][0]['image']);
-          // console.log(response['items'][0]);
-          // $img.attr('src', response.items[0].link);
-          $img.attr('src', response.items[0].image.thumbnailLink);
+          var imgSrc = response.items[0].link;
+          var avatarImgSrc = response.items[0].image.thumbnailLink;
+          setAvatarImgSrc(activeQuoteId, avatarImgSrc);
+          setAuthorImgSrc(activeQuoteId, imgSrc);
+          $img.attr('src', avatarImgSrc);
         },
 
         error: function(response, status, error) {
@@ -351,8 +380,11 @@ $(document).ready(function() {
       'class': 'media-holder'
     });
 
-    // var $avatarDiv = createQuoteAvatarHTML(qId);
-    // $divContainer.append($avatarDiv);
+    if (enableGoogleAPICalls) {
+      var $avatarDiv = createQuoteAvatarHTML(qId);
+      $divContainer.append($avatarDiv);
+    }
+
 
     var $articleBody = createQuoteBodyHTML(qId);
     // var $favBtn = createFavBtnHTML(qId);
