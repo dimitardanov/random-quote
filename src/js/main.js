@@ -99,6 +99,22 @@ $(document).ready(function() {
               });
     };
 
+  var getObjFromQueryStr = function () {
+    var qObj = {};
+    var qStr = window.location.search.substring(1);
+    qStr = decodeURIComponent(qStr);
+    if (qStr !== '') {
+      var ql = qStr.split('&');
+      ql.map(function (s) {
+        var key = '';
+        var val = '';
+        [key, val] = s.split('=');
+        qObj[key] = val;
+      });
+    }
+    return qObj;
+  };
+
 
   $('#jswarning').hide();
 
