@@ -64,8 +64,11 @@ $(document).ready(function() {
     quoteObj = preprocessResponse(response);
     setActiveQuoteId(quoteObj);
     addQuote(quoteObj);
-    // changeAvatarImage(createQueryString(author));
     createActiveQuote(activeQuoteId);
+    if (enableGoogleAPICalls) {
+      var author = quoteObj.quoteAuthor;
+      changeAvatarImage(createQueryString(author));
+    }
     console.log(quotes[activeQuoteId]);
     return response;
   };
@@ -170,7 +173,7 @@ $(document).ready(function() {
   };
 
   var changeAvatarImage = function (queryStr) {
-    var $img = $('#avatar');
+    var $img = $('#active-quote img');
     $img.show();
     if (queryStr) {
       $.ajax({
@@ -183,10 +186,11 @@ $(document).ready(function() {
         jsonp: false,
 
         success: function( response ) {
-          // console.log(response['items'][0]['image']);
-          // console.log(response['items'][0]);
-          // $img.attr('src', response.items[0].link);
-          $img.attr('src', response.items[0].image.thumbnailLink);
+          var imgSrc = response.items[0].link;
+          var avatarImgSrc = response.items[0].image.thumbnailLink;
+          setAvatarImgSrc(activeQuoteId, avatarImgSrc);
+          setAuthorImgSrc(activeQuoteId, imgSrc);
+          $img.attr('src', avatarImgSrc);
         },
 
         error: function(response, status, error) {
