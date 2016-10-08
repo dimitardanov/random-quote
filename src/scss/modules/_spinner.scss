@@ -1,0 +1,35 @@
+
+
+.spinner {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  line-height: 120px;
+  text-align: center;
+
+  span {
+    display: block;
+    margin: 30px auto;
+    font-size: 60px;
+    color: #cdcdcd;
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    animation-delay: 0s;
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(359.9deg);
+  }
+}
