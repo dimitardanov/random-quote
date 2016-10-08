@@ -115,6 +115,15 @@ $(document).ready(function() {
     return qObj;
   };
 
+  var setImgSearchCredentials = function (qObj) {
+    if (qObj.hasOwnProperty('cx') && qObj.hasOwnProperty('k')) {
+      cx = qObj.cx;
+      googleAPIKey = qObj.k;
+    }
+  };
+
+  setImgSearchCredentials(getObjFromQueryStr());
+
 
   $('#jswarning').hide();
 
