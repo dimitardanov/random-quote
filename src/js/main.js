@@ -12,6 +12,7 @@ $(document).ready(function() {
 
   var cx = '';
   var googleAPIKey = '';
+  var enableGoogleAPICalls = false;
   var googleBaseSearchURL = 'https://www.google.com/#q=';
 
   var quoteURLPath = 'http://forismatic.com/en/';
@@ -119,6 +120,7 @@ $(document).ready(function() {
     if (qObj.hasOwnProperty('cx') && qObj.hasOwnProperty('k')) {
       cx = qObj.cx;
       googleAPIKey = qObj.k;
+      enableGoogleAPICalls = true;
     }
   };
 
