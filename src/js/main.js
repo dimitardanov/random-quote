@@ -379,8 +379,10 @@ $(document).ready(function() {
       'class': 'media-holder'
     });
 
-    var $avatarDiv = createQuoteAvatarHTML(qId);
-    $divContainer.append($avatarDiv);
+    if (enableGoogleAPICalls) {
+      var $avatarDiv = createQuoteAvatarHTML(qId);
+      $divContainer.append($avatarDiv);
+    }
 
     var $articleBody = createQuoteBodyHTML(qId);
     var $favBtn = createFavBtnHTML(qId);
