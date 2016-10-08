@@ -110,10 +110,8 @@ $(document).ready(function() {
     if (qStr !== '') {
       var ql = qStr.split('&');
       ql.map(function (s) {
-        var key = '';
-        var val = '';
-        [key, val] = s.split('=');
-        qObj[key] = val;
+        var kv = s.split('=');
+        qObj[kv[0]] = kv[1];
       });
     }
     return qObj;
