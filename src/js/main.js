@@ -430,6 +430,7 @@ $(document).ready(function() {
       $heart.removeClass('glyphicon-heart-empty')
             .addClass('glyphicon-heart');
       $text.text(' unFav!');
+      addFavQuoteToDropdown(qId);
     } else {
       delete favQuoteIds[idIndex];
       $this.addClass('btn-fav-col')
@@ -441,4 +442,15 @@ $(document).ready(function() {
   };
 
   $('section').on('click', '.btn[data-fav-id]', toggleFavButton);
+
+
+  var addFavQuoteToDropdown = function (qId) {
+    var quoteText = getQuoteText(qId);
+    var $ddList = $('.dropdown-menu');
+    var $li = $('<li></li>', {'data-quote-id': qId,});
+    var $a = $('<a href=#></a>').text(quoteText);
+    $li.append($a);
+    $ddList.append($li);
+  };
+
 });
