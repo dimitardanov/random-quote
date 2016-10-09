@@ -417,4 +417,28 @@ $(document).ready(function() {
     return $activeQuote;
   };
 
+  var toggleFavButton = function () {
+    var $this = $(this);
+    var $heart = $('span:first', $this);
+    var $text = $('span:last', $this);
+    var qId = $this.attr('data-fav-id');
+    var idIndex = favQuoteIds.indexOf(qId);
+    if (idIndex === -1) {
+      favQuoteIds.push(qId);
+      $this.addClass('btn-unfav-col')
+           .removeClass('btn-fav-col');
+      $heart.removeClass('glyphicon-heart-empty')
+            .addClass('glyphicon-heart');
+      $text.text(' unFav!');
+    } else {
+      delete favQuoteIds[idIndex];
+      $this.addClass('btn-fav-col')
+           .removeClass('btn-unfav-col');
+      $heart.removeClass('glyphicon-heart')
+            .addClass('glyphicon-heart-empty');
+      $text.text(' Fav!');
+    }
+  };
+
+  $('section').on('click', '.btn[data-fav-id]', toggleFavButton);
 });
