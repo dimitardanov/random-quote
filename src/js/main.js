@@ -432,7 +432,7 @@ $(document).ready(function() {
       $text.text(' unFav!');
       addFavQuoteToDropdown(qId);
     } else {
-      delete favQuoteIds[idIndex];
+      favQuoteIds.splice(idIndex, 1);
       $this.addClass('btn-fav-col')
            .removeClass('btn-unfav-col');
       $heart.removeClass('glyphicon-heart')
