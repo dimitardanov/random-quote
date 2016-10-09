@@ -438,6 +438,7 @@ $(document).ready(function() {
       $heart.removeClass('glyphicon-heart')
             .addClass('glyphicon-heart-empty');
       $text.text(' Fav!');
+      removeUnFavedQuoteFromDropdown(qId);
     }
   };
 
@@ -451,6 +452,12 @@ $(document).ready(function() {
     var $a = $('<a href=#></a>').text(quoteText);
     $li.append($a);
     $ddList.append($li);
+  };
+
+  var removeUnFavedQuoteFromDropdown = function (qId) {
+    $('li[data-quote-id='+qId+']').slideUp(function () {
+      $(this).remove();
+    });
   };
 
 });
