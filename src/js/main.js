@@ -447,17 +447,24 @@ $(document).ready(function() {
 
   var addFavQuoteToDropdown = function (qId) {
     var quoteText = getQuoteText(qId);
-    var $ddList = $('.dropdown-menu');
+    var $lastListItem = $('.dropdown-menu li:last');
+    if (favQuoteIds.length === 1) {
+      $('.dropdown-menu li').not('[role="separator"]').remove();
+    }
     var $li = $('<li></li>', {'data-quote-id': qId,});
     var $a = $('<a href=#></a>').text(quoteText);
     $li.append($a);
-    $ddList.append($li);
+    $lastListItem.before($li);
   };
 
   var removeUnFavedQuoteFromDropdown = function (qId) {
     $('li[data-quote-id='+qId+']').slideUp(function () {
       $(this).remove();
     });
+    if (favQuoteIds.length === 0) {
+      var $li = $('<li></li>').append($('<a href=#></a>').text('Yo have no favorite quotes'));
+      $('.dropdown-menu li:last').before($li);
+    }
   };
 
 });
