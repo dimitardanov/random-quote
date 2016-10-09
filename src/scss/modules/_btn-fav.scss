@@ -5,5 +5,12 @@ button.btn-fav {
   display: block;
   @include position-bottom-right (12px, 98px);
   @include button-size(4px, $padding-base-horizontal, 13px, $line-height-base, $btn-border-radius-base);
-  @include button-variant($btn-danger-color, $btn-fav-bg, $btn-fav-border);
+}
+
+.btn-fav-col {
+  @include button-variant($btn-fav-color, $btn-fav-bg, $btn-fav-border);
+}
+
+.btn-unfav-col {
+  @include button-variant($btn-unfav-color, $btn-unfav-bg, $btn-unfav-border);
 }
