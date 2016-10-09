@@ -352,11 +352,24 @@ $(document).ready(function() {
   };
 
   var createFavBtnHTML = function (qId) {
-    return $('<button></button>', {
+    var $btn = $('<button></button>', {
       type: 'button',
       'class': 'btn btn-fav',
       'data-fav-id': getFavBtnData(qId)
-    }).html('<span class="glyphicon glyphicon-heart-empty"></span> Fav!');
+    });
+    var btnColorClass = 'btn-fav-col';
+    var btnText = 'Fav!';
+    var btnIconClass = 'glyphicon glyphicon-heart-empty';
+    if (favQuoteIds.indexOf(qId) !== -1) {
+      btnColorClass = 'btn-unfav-col';
+      btnText = 'unFav!';
+      btnIconClass = 'glyphicon glyphicon-heart';
+    }
+    btnText = ' ' + btnText;
+    $btn.addClass(btnColorClass);
+    $btn.append($('<span></span>', {'class': btnIconClass}));
+    $btn.append($('<span></span>', {'class': 'btn-fav-text'}).text(btnText));
+    return $btn;
   };
 
   var createTweetBtnHTML = function (qId) {
