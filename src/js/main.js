@@ -320,7 +320,8 @@ $(document).ready(function() {
       'class': 'media-left'
     });
     var $imgLink = $('<a></a>', {
-      href: '#'
+      href: '#',
+      'data-quote-id': qId
     });
     var $avatarImg = $('<img>', {
       src: getAvatarImgSrc(qId),
@@ -481,5 +482,7 @@ $(document).ready(function() {
   };
 
   $('.dropdown-menu').on('click', 'li[data-quote-id]', constructQuoteModal);
+
+  $('section').on('click', 'a[data-quote-id]', constructQuoteModal);
 
 });
