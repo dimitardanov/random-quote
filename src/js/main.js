@@ -465,7 +465,7 @@ $(document).ready(function() {
       $(this).remove();
     });
     if (favQuoteIds.length === 0) {
-      var $li = $('<li></li>').append($('<a href=#></a>').text('Yo have no favorite quotes'));
+      var $li = $('<li></li>').append($('<a href=#></a>').text('You have no favorite quotes'));
       $('.dropdown-menu li:last').before($li);
     }
   };
