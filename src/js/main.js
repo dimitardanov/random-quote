@@ -469,4 +469,16 @@ $(document).ready(function() {
     }
   };
 
+  $('.dropdown-menu').on('click', 'li[data-quote-id]', function () {
+    console.log($(this).data('quote-id'));
+    var $this = $(this);
+    var $modalBody = $('.modal-body');
+    var qId = $this.data('quote-id');
+    var quote = quotes[qId]
+    $('img', $modalBody).attr('src', quote.authorImgSrc);
+    $('p', $modalBody).text(quote.quoteText);
+    $('#quoteModalLabel').text(quote.quoteAuthor);
+    $('#quoteModal').modal('show');
+  });
+
 });
