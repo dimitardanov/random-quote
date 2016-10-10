@@ -352,11 +352,24 @@ $(document).ready(function() {
   };
 
   var createFavBtnHTML = function (qId) {
-    return $('<button></button>', {
+    var $btn = $('<button></button>', {
       type: 'button',
       'class': 'btn btn-fav',
       'data-fav-id': getFavBtnData(qId)
-    }).html('<span class="glyphicon glyphicon-heart-empty"></span> Fav!');
+    });
+    var btnColorClass = 'btn-fav-col';
+    var btnText = 'Fav!';
+    var btnIconClass = 'glyphicon glyphicon-heart-empty';
+    if (favQuoteIds.indexOf(qId) !== -1) {
+      btnColorClass = 'btn-unfav-col';
+      btnText = 'unFav!';
+      btnIconClass = 'glyphicon glyphicon-heart';
+    }
+    btnText = ' ' + btnText;
+    $btn.addClass(btnColorClass);
+    $btn.append($('<span></span>', {'class': btnIconClass}));
+    $btn.append($('<span></span>', {'class': 'btn-fav-text'}).text(btnText));
+    return $btn;
   };
 
   var createTweetBtnHTML = function (qId) {
@@ -387,10 +400,10 @@ $(document).ready(function() {
 
 
     var $articleBody = createQuoteBodyHTML(qId);
-    // var $favBtn = createFavBtnHTML(qId);
+    var $favBtn = createFavBtnHTML(qId);
     var $tweetBtn = createTweetBtnHTML(qId);
 
-    // $articleBody.append($favBtn);
+    $articleBody.append($favBtn);
     $articleBody.append($tweetBtn);
     $divContainer.append($articleBody);
 
@@ -404,6 +417,56 @@ $(document).ready(function() {
     $quoteHTML.fadeIn();
     $('#active-quote').removeClass('blurry');
     return $activeQuote;
+  };
+
+  var toggleFavButton = function () {
+    var $this = $(this);
+    var $heart = $('span:first', $this);
+    var $text = $('span:last', $this);
+    var qId = $this.attr('data-fav-id');
+    var idIndex = favQuoteIds.indexOf(qId);
+    if (idIndex === -1) {
+      favQuoteIds.push(qId);
+      $this.addClass('btn-unfav-col')
+           .removeClass('btn-fav-col');
+      $heart.removeClass('glyphicon-heart-empty')
+            .addClass('glyphicon-heart');
+      $text.text(' unFav!');
+      addFavQuoteToDropdown(qId);
+    } else {
+      favQuoteIds.splice(idIndex, 1);
+      $this.addClass('btn-fav-col')
+           .removeClass('btn-unfav-col');
+      $heart.removeClass('glyphicon-heart')
+            .addClass('glyphicon-heart-empty');
+      $text.text(' Fav!');
+      removeUnFavedQuoteFromDropdown(qId);
+    }
+  };
+
+  $('section').on('click', '.btn[data-fav-id]', toggleFavButton);
+
+
+  var addFavQuoteToDropdown = function (qId) {
+    var quoteText = getQuoteText(qId);
+    var $lastListItem = $('.dropdown-menu li:last');
+    if (favQuoteIds.length === 1) {
+      $('.dropdown-menu li').not('[role="separator"]').remove();
+    }
+    var $li = $('<li></li>', {'data-quote-id': qId,});
+    var $a = $('<a href=#></a>').text(quoteText);
+    $li.append($a);
+    $lastListItem.before($li);
+  };
+
+  var removeUnFavedQuoteFromDropdown = function (qId) {
+    $('li[data-quote-id='+qId+']').slideUp(function () {
+      $(this).remove();
+    });
+    if (favQuoteIds.length === 0) {
+      var $li = $('<li></li>').append($('<a href=#></a>').text('Yo have no favorite quotes'));
+      $('.dropdown-menu li:last').before($li);
+    }
   };
 
 });

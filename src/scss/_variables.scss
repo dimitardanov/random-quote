@@ -22,9 +22,17 @@ $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 
 
-$btn-fav-bg:            #e01b1b;
-$btn-fav-border:        #bf0c0c;
+$fav-color-light:       #e01b1b;
+$fav-color-dark:        #bf0c0c;
 
+
+$btn-fav-color:         lighten($fav-color-light, 48%);
+$btn-fav-bg:            $fav-color-light;
+$btn-fav-border:        $fav-color-dark;
+
+$btn-unfav-color:       $fav-color-light;
+$btn-unfav-bg:          lighten($fav-color-light, 45%);
+$btn-unfav-border:      $fav-color-dark;
 
 
 
