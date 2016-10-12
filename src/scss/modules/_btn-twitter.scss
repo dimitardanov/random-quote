@@ -6,4 +6,9 @@
   iframe {
     display: block;
   }
+
+  a {
+    @include button-size(4px, $padding-base-horizontal, 13px, $line-height-base, $btn-border-radius-base);
+    @include button-variant($btn-tweet-color, $btn-tweet-bg, $btn-tweet-border);
+  }
 }

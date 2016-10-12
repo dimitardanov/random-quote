@@ -409,19 +409,38 @@ $(document).ready(function() {
   };
 
   var createTweetBtnHTML = function (qId) {
-    var $tweetBtn = $('<a></a>', {
-      'class': 'twitter-share-button',
-      href: 'https://twitter.com/share',
-      'data-size': 'large',
-      'data-url': '/',
-      'data-text': getTweetText(qId)
-    }).text('Tweet');
-
     var $tweetBtnCont = $('<div></div>', {
       'class': 'btn-twitter'
-    }).append($tweetBtn);
-    twttr.widgets.load($tweetBtn);
+    });
+
+    if (twttr.widgets !== undefined) {
+      var $tweetBtn = $('<a></a>', {
+        'class': 'twitter-share-button',
+        href: 'https://twitter.com/share',
+        'data-size': 'large',
+        'data-url': '/',
+        'data-text': getTweetText(qId)
+      }).text('Tweet');
+      $tweetBtnCont.append($tweetBtn);
+      twttr.widgets.load($tweetBtn);
+    } else {
+      $tweetBtn = $('<a></a>', {
+        'class': 'btn',
+        href: createTwitterIntentManualURL(qId),
+        'target': '_blank'
+      }).text('Tweet');
+      $tweetBtnCont.append($tweetBtn);
+    }
     return $tweetBtnCont;
+  };
+
+  var createTwitterIntentManualURL = function (qId) {
+    var url = 'https://twitter.com/intent/tweet?';
+    var queryStr = {
+      'text': getTweetText(qId)
+    };
+    queryStr = $.param(queryStr);
+    return url + queryStr;
   };
 
   var createQuoteHTML = function (qId) {
