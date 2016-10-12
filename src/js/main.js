@@ -30,7 +30,10 @@ $(document).ready(function() {
     if (activeQuoteId !== '') {
       moveActiveQuoteToList();
     }
+    newQuoteAjaxCall();
+  };
 
+  var newQuoteAjaxCall = function () {
     $.ajax({
       url: quoteAPIURL,
       data: searchInfo,
