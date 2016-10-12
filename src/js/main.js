@@ -50,16 +50,23 @@ $(document).ready(function() {
         quoteSuccessFunc(response);
       },
 
-      error: function( response, status, error ) {
+      error: function (response, status, error) {
         console.log(response);
         console.log(status);
         console.log(error);
+        if (status === 'parsererror') {
+          console.log('recursion call...');
+          setTimeout(newQuoteAjaxCall, 200);
+        }
       },
 
       complete: function (jqXHR, status) {
-        $('.btn-new-quote').prop('disabled', false);
+        if (status === 'success') {
+          setTimeout(function () {
+            $('.btn-new-quote').prop('disabled', false);
+          }, 400);
+        }
       }
-
     });
   };
 
