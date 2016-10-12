@@ -26,6 +26,7 @@ $(document).ready(function() {
 
   var getNewQuote = function () {
     $('.btn-new-quote').prop('disabled', true);
+    removeQuoteErrorMessage();
     createSpinner();
     if (activeQuoteId !== '') {
       moveActiveQuoteToList();
@@ -57,11 +58,17 @@ $(document).ready(function() {
         if (status === 'parsererror') {
           console.log('recursion call...');
           setTimeout(newQuoteAjaxCall, 200);
+        } else {
+          activeQuoteId = '';
+          removeSpinner();
+          createQuoteErrorMessage();
         }
       },
 
       complete: function (jqXHR, status) {
         if (status === 'success') {
+          enableNewQuoteButton();
+        } else if (status !== 'parsererror') {
           enableNewQuoteButton();
         }
       }
