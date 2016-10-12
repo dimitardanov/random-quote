@@ -62,12 +62,16 @@ $(document).ready(function() {
 
       complete: function (jqXHR, status) {
         if (status === 'success') {
-          setTimeout(function () {
-            $('.btn-new-quote').prop('disabled', false);
-          }, 400);
+          enableNewQuoteButton();
         }
       }
     });
+  };
+
+  var enableNewQuoteButton = function () {
+    setTimeout(function () {
+      $('.btn-new-quote').prop('disabled', false);
+    }, 400);
   };
 
   var quoteSuccessFunc = function( response ) {
