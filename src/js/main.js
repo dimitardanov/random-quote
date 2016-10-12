@@ -208,7 +208,7 @@ $(document).ready(function() {
   var changeAvatarImage = function (queryStr) {
     var $img = $('#active-quote img');
     $img.show();
-    if (queryStr) {
+    if (queryStr && enableGoogleAPICalls) {
       $.ajax({
         url: createGoogleAPIURL(queryStr),
         method: 'GET',
@@ -226,13 +226,22 @@ $(document).ready(function() {
           $img.attr('src', avatarImgSrc);
         },
 
+        statusCode: {
+          403: function () {
+            enableGoogleAPICalls = false;
+          }
+        },
+
         error: function(response, status, error) {
-          $img.attr('src', 'http://www.placehold.it/60/000000');
+          // $img.attr('src', 'http://www.placehold.it/60/000000');
+          // console.log(response);
+          // console.log(status);
+          // console.log(error);
         }
       });
     } else {
       $img.hide();
-      $img.attr('src', 'http://www.placehold.it/60/ff0000');
+    //   $img.attr('src', 'http://www.placehold.it/60/ff0000');
     }
   };
 
