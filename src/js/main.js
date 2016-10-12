@@ -74,6 +74,20 @@ $(document).ready(function() {
     }, 400);
   };
 
+  var createQuoteErrorMessage = function () {
+    var $message = $('<p></p>', {'class': 'error-message'});
+    $message.text('ooops-a-daisy, please try again...');
+    $message.hide();
+    $('#active-quote').append($message);
+    $message.fadeIn();
+  };
+
+  var removeQuoteErrorMessage = function () {
+    $('#active-quote .error-message').fadeOut(function () {
+      $(this).remove();
+    });
+  };
+
   var quoteSuccessFunc = function( response ) {
     quoteObj = preprocessResponse(response);
     setActiveQuoteId(quoteObj);

@@ -1,0 +1,7 @@
+
+
+.error-message {
+  @extend .spinner;
+  font-size: 2em;
+  color: lighten($gray-light, 40%);
+}
