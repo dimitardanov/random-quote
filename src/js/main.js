@@ -412,9 +412,10 @@ $(document).ready(function() {
     var $tweetBtnCont = $('<div></div>', {
       'class': 'btn-twitter'
     });
+    var $tweetBtn;
 
     if (twttr.widgets !== undefined) {
-      var $tweetBtn = $('<a></a>', {
+      $tweetBtn = $('<a></a>', {
         'class': 'twitter-share-button',
         href: 'https://twitter.com/share',
         'data-size': 'large',
