@@ -40,6 +40,7 @@ $(document).ready(function() {
       data: searchInfo,
       method: 'GET',
       cache: false,
+      timeout: 5000,
 
       crossDomain: true,
       dataType: 'jsonp',
